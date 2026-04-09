@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Syed Nihaal - projects, skills, and contact information.">
+    <title>Syed Nihaal | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="ambient-layer" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+        <a class="brand" href="#top" aria-label="Go to top">
+            <span class="brand-mark">SN</span>
+            <span class="brand-text">Syed Nihaal</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a href="#projects">Projects</a>
+            <a href="#repositories">Repos</a>
+            <a href="#skills">Skills</a>
+            <a href="#journey">Journey</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a class="button button-small" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </header>
+
+    <main>
+        <section class="hero section reveal" aria-labelledby="hero-title">
+            <p class="eyebrow">Developer Portfolio</p>
+            <h1 id="hero-title">Turning data into practical insights, models, and developer-friendly experiences.</h1>
+            <p class="hero-copy">
+                Hi, I am Syed Nihaal Ahmed, an Information Technology student at Middlesex University Dubai. I build practical web applications and keep iterating on clean, user-focused engineering.
+            </p>
+            <div class="hero-actions">
+                <a class="button" href="#projects">View Projects</a>
+                <a class="button button-secondary" href="#contact">Get In Touch</a>
+            </div>
+            <ul class="stats" aria-label="Highlights">
+                <li>
+                    <span class="stat-value" id="statRepos">--</span>
+                    <span class="stat-label">Public Repositories</span>
+                </li>
+                <li>
+                    <span class="stat-value">74</span>
+                    <span class="stat-label">Contributions (Last Year)</span>
+                </li>
+                <li>
+                    <span class="stat-value" id="statSocial">--</span>
+                    <span class="stat-label">Followers / Following</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section reveal" id="projects" aria-labelledby="projects-title">
+            <div class="section-head">
+                <p class="eyebrow">Most Contributed Repos</p>
+                <h2 id="projects-title">Where I have contributed the most</h2>
+            </div>
+            <div class="project-grid" id="featuredGrid">
+                <article class="project-card">
+                    <h3>Loading repositories...</h3>
+                    <p>Fetching contribution data from GitHub API.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section reveal" id="repositories" aria-labelledby="repositories-title">
+            <div class="section-head repo-head">
+                <div>
+                    <p class="eyebrow">Repository Showcase</p>
+                    <h2 id="repositories-title">All GitHub repositories</h2>
+                </div>
+                <div class="repo-controls" aria-label="Repository carousel controls">
+                    <button class="repo-nav" id="repoBack" type="button" aria-controls="repoTrack">Back</button>
+                    <button class="repo-nav" id="repoNext" type="button" aria-controls="repoTrack">Next</button>
+                </div>
+            </div>
+            <div class="repo-slider" aria-label="Manual list of all repositories">
+                <div class="repo-track" id="repoTrack" tabindex="0">
+                    <article class="repo-item">
+                        <h3>Loading repositories...</h3>
+                        <p class="repo-about">Fetching about and topics from GitHub API.</p>
+                        <p class="repo-topics">Topics: ...</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="skills" aria-labelledby="skills-title">
+            <div class="section-head">
+                <p class="eyebrow">Toolbox</p>
+                <h2 id="skills-title">Extracted topic stack from GitHub</h2>
+            </div>
+            <div class="skills-layout topic-layout" id="topicsContainer">
+                <span class="topic-chip">Loading topics...</span>
+            </div>
+        </section>
+
+        <section class="section reveal" id="journey" aria-labelledby="journey-title">
+            <div class="section-head">
+                <p class="eyebrow">Timeline</p>
+                <h2 id="journey-title">Current journey</h2>
+            </div>
+            <ol class="timeline">
+                <li>
+                    <span class="time">2022</span>
+                    <p>HTML and CSS</p>
+                </li>
+                <li>
+                    <span class="time">2023</span>
+                    <p>Python</p>
+                </li>
+                <li>
+                    <span class="time">2024</span>
+                    <p>MySQML and XML</p>
+                </li>
+                <li>
+                    <span class="time">2025</span>
+                    <p>Data Analytics, MongoDB and Javascript</p>
+                </li>
+                <li>
+                    <span class="time">2026</span>
+                    <p>Data Science and Machine Learning</p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section reveal" id="contact" aria-labelledby="contact-title">
+            <div class="section-head">
+                <p class="eyebrow">Contact</p>
+                <h2 id="contact-title">Let us build something useful</h2>
+            </div>
+            <div class="contact-card">
+                <p>
+                    Open to collaboration, internships, and project discussions.
+                    Based in United Arab Emirates.
+                </p>
+                <div class="contact-actions">
+                    <a class="button" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer">Message on GitHub</a>
+                    <a class="button button-secondary" href="https://www.linkedin.com/in/syed-nihaal-ahmed-71056b31a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a class="button button-secondary" href="mailto:syednihaal5@gmail.com">Email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Syed Nihaal. Built for GitHub Pages.</p>
+        <a href="#top">Back to top</a>
+    </footer>
+
+    <script>
+        (async function () {
+            const username = "Syed-Nihaal";
+            const track = document.getElementById("repoTrack");
+            const backButton = document.getElementById("repoBack");
+            const nextButton = document.getElementById("repoNext");
+            const featuredGrid = document.getElementById("featuredGrid");
+            const topicsContainer = document.getElementById("topicsContainer");
+            const statRepos = document.getElementById("statRepos");
+            const statSocial = document.getElementById("statSocial");
+
+            if (!track || !backButton || !nextButton || !featuredGrid || !topicsContainer) {
+                return;
+            }
+
+            const GH_HEADERS = {
+                "Accept": "application/vnd.github+json"
+            };
+
+            const renderRepoCard = (repo) => {
+                const article = document.createElement("article");
+                article.className = "repo-item";
+
+                const h3 = document.createElement("h3");
+                const link = document.createElement("a");
+                link.href = repo.html_url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = repo.name;
+                h3.appendChild(link);
+
+                const about = document.createElement("p");
+                about.className = "repo-about";
+                about.textContent = repo.description || "No public description added yet.";
+
+                const topics = document.createElement("p");
+                topics.className = "repo-topics";
+                topics.textContent = `Topics: ${repo.topics && repo.topics.length ? repo.topics.join(", ") : "None"}`;
+
+                article.appendChild(h3);
+                article.appendChild(about);
+                article.appendChild(topics);
+                return article;
+            };
+
+            const renderFeaturedCard = (repo) => {
+                const article = document.createElement("article");
+                article.className = "project-card";
+
+                const title = document.createElement("h3");
+                title.textContent = repo.name;
+
+                const description = document.createElement("p");
+                description.textContent = repo.description || "No public description added yet.";
+
+                const chips = document.createElement("ul");
+                chips.className = "chip-list";
+
+                const languageChip = document.createElement("li");
+                languageChip.textContent = repo.language || "Unknown Language";
+
+                const contributionChip = document.createElement("li");
+                contributionChip.textContent = `${repo.selfContributions} Contributions`;
+
+                const topicChip = document.createElement("li");
+                topicChip.textContent = repo.topics && repo.topics.length ? repo.topics[0] : "No Topics";
+
+                chips.appendChild(languageChip);
+                chips.appendChild(contributionChip);
+                chips.appendChild(topicChip);
+
+                const link = document.createElement("a");
+                link.href = repo.html_url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "Repository";
+
+                article.appendChild(title);
+                article.appendChild(description);
+                article.appendChild(chips);
+                article.appendChild(link);
+                return article;
+            };
+
+            const fetchSelfContributions = async (repoName) => {
+                try {
+                    const response = await fetch(`https://api.github.com/repos/${username}/${repoName}/contributors`, {
+                        headers: GH_HEADERS
+                    });
+                    if (!response.ok) {
+                        return 0;
+                    }
+
+                    const contributors = await response.json();
+                    const mine = contributors.find((entry) => entry.login === username);
+                    return mine ? mine.contributions : 0;
+                } catch {
+                    return 0;
+                }
+            };
+
+            const updateButtons = () => {
+                const maxLeft = track.scrollWidth - track.clientWidth;
+                backButton.disabled = track.scrollLeft <= 2;
+                nextButton.disabled = track.scrollLeft >= maxLeft - 2;
+            };
+
+            const step = () => {
+                const firstCard = track.querySelector(".repo-item");
+                if (!firstCard) {
+                    return track.clientWidth;
+                }
+
+                const styles = window.getComputedStyle(track);
+                const gap = parseFloat(styles.columnGap || styles.gap || "0");
+                return (firstCard.getBoundingClientRect().width + gap) * 3;
+            };
+
+            backButton.addEventListener("click", () => {
+                track.scrollBy({ left: -step(), behavior: "smooth" });
+            });
+
+            nextButton.addEventListener("click", () => {
+                track.scrollBy({ left: step(), behavior: "smooth" });
+            });
+
+            track.addEventListener("scroll", updateButtons, { passive: true });
+            window.addEventListener("resize", updateButtons);
+
+            try {
+                const [userResponse, reposResponse] = await Promise.all([
+                    fetch(`https://api.github.com/users/${username}`, { headers: GH_HEADERS }),
+                    fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, { headers: GH_HEADERS })
+                ]);
+
+                if (!userResponse.ok || !reposResponse.ok) {
+                    throw new Error("Failed to fetch GitHub profile data.");
+                }
+
+                const user = await userResponse.json();
+                const repos = await reposResponse.json();
+
+                if (statRepos) {
+                    statRepos.textContent = String(user.public_repos ?? repos.length);
+                }
+
+                if (statSocial) {
+                    statSocial.textContent = `${user.followers ?? 0} / ${user.following ?? 0}`;
+                }
+
+                const withContributions = await Promise.all(
+                    repos.map(async (repo) => ({
+                        ...repo,
+                        selfContributions: await fetchSelfContributions(repo.name)
+                    }))
+                );
+
+                const featured = [...withContributions]
+                    .sort((a, b) => b.selfContributions - a.selfContributions)
+                    .slice(0, 3);
+
+                featuredGrid.innerHTML = "";
+                featured.forEach((repo) => {
+                    featuredGrid.appendChild(renderFeaturedCard(repo));
+                });
+
+                track.innerHTML = "";
+                withContributions.forEach((repo) => {
+                    track.appendChild(renderRepoCard(repo));
+                });
+
+                const uniqueTopics = Array.from(new Set(
+                    withContributions.flatMap((repo) => Array.isArray(repo.topics) ? repo.topics : [])
+                )).sort((a, b) => a.localeCompare(b));
+
+                topicsContainer.innerHTML = "";
+                if (uniqueTopics.length === 0) {
+                    const empty = document.createElement("span");
+                    empty.className = "topic-chip";
+                    empty.textContent = "No public topics found.";
+                    topicsContainer.appendChild(empty);
+                } else {
+                    uniqueTopics.forEach((topic) => {
+                        const chip = document.createElement("span");
+                        chip.className = "topic-chip";
+                        chip.textContent = topic;
+                        topicsContainer.appendChild(chip);
+                    });
+                }
+            } catch {
+                featuredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load featured repositories</h3><p>Please try again later or check GitHub API rate limits.</p></article>";
+                track.innerHTML = "<article class=\"repo-item\"><h3>Could not load repositories</h3><p class=\"repo-about\">Please refresh the page later.</p><p class=\"repo-topics\">Topics: Unavailable</p></article>";
+                topicsContainer.innerHTML = "<span class=\"topic-chip\">Topics unavailable</span>";
+            }
+
+            updateButtons();
+        })();
+    </script>
+</body>
+</html>
