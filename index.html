@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Syed Nihaal - projects, skills, and contact information.">
-    <title>Syed Nihaal | Portfolio</title>
+    <title>Syed Nihaal Ahmed | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <div id="top" class="page-top-sentinel" aria-hidden="true"></div>
     <div class="ambient-layer" aria-hidden="true"></div>
 
-    <header class="site-header" id="top">
+    <header class="site-header">
         <a class="brand" href="#top" aria-label="Go to top">
-            <span class="brand-mark">SN</span>
-            <span class="brand-text">Syed Nihaal</span>
+            <span class="brand-mark"><img src="assets/img/icons8-administrator-male-48.png" alt="" class="brand-icon"></span>
+            <span class="brand-text">Syed Nihaal Ahmed</span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
-            <a href="#projects">Projects</a>
-            <a href="#repositories">Repos</a>
-            <a href="#skills">Skills</a>
-            <a href="#journey">Journey</a>
-            <a href="#contact">Contact</a>
+            <a href="#projects"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="nav-icon">Projects</a>
+            <a href="#repositories"><img src="assets/img/icons8-repository-50.png" alt="" class="nav-icon">Repos</a>
+            <a href="#skills"><img src="assets/img/icons8-skills-50.png" alt="" class="nav-icon">Skills</a>
+            <a href="#journey"><img src="assets/img/icons8-journey-50.png" alt="" class="nav-icon">Journey</a>
+            <a href="#contact"><img src="assets/img/icons8-contact-50.png" alt="" class="nav-icon">Contact</a>
         </nav>
-        <a class="button button-small" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="button button-small button-nav-style" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer"><img src="assets/img/icons8-github-50.png" alt="" class="nav-icon">GitHub</a>
     </header>
 
     <main>
@@ -33,7 +34,7 @@
             <p class="eyebrow">Portfolio</p>
             <h1 id="hero-title">Building predictive models, analytical pipelines, and data-driven solutions that turn raw numbers into meaning.</h1>
             <p class="hero-copy">
-                Hi, I am Syed Nihaal Ahmed, an Information Technology student at Middlesex University Dubai. I am working towards a career in research-based Data Science — applying machine learning and statistical modelling to solve real-world problems at the highest level.</p>
+                Hi, I am Syed, an Information Technology student at Middlesex University Dubai. I am working towards a career in research-based Data Science — applying machine learning and statistical modelling to solve real-world problems at the highest level.</p>
             <div class="hero-actions">
                 <a class="button" href="#projects">View Projects</a>
                 <a class="button button-secondary" href="#contact">Get In Touch</a>
@@ -44,8 +45,8 @@
                     <span class="stat-label">Public Repositories</span>
                 </li>
                 <li>
-                    <span class="stat-value">74</span>
-                    <span class="stat-label">Contributions (Last Year)</span>
+                    <span class="stat-value" id="statContrib">--</span>
+                    <span class="stat-label">Contributions (This Year)</span>
                 </li>
                 <li>
                     <span class="stat-value" id="statSocial">--</span>
@@ -57,7 +58,7 @@
         <section class="section reveal" id="projects" aria-labelledby="projects-title">
             <div class="section-head">
                 <p class="eyebrow">Most Contributed Repos</p>
-                <h2 id="projects-title">Where I have contributed the most</h2>
+                <h2 id="projects-title"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="section-icon">Where I have contributed the most</h2>
             </div>
             <div class="project-grid" id="featuredGrid">
                 <article class="project-card">
@@ -71,7 +72,7 @@
             <div class="section-head repo-head">
                 <div>
                     <p class="eyebrow">Repository Showcase</p>
-                    <h2 id="repositories-title">All GitHub repositories</h2>
+                    <h2 id="repositories-title"><img src="assets/img/icons8-repository-50.png" alt="" class="section-icon">All GitHub repositories</h2>
                 </div>
                 <div class="repo-controls" aria-label="Repository carousel controls">
                     <button class="repo-nav" id="repoBack" type="button" aria-controls="repoTrack">Back</button>
@@ -92,7 +93,7 @@
         <section class="section reveal" id="skills" aria-labelledby="skills-title">
             <div class="section-head">
                 <p class="eyebrow">Toolbox</p>
-                <h2 id="skills-title">Skills</h2>
+                <h2 id="skills-title"><img src="assets/img/icons8-skills-50.png" alt="" class="section-icon">Skills</h2>
             </div>
             <div class="skills-layout topic-layout" id="topicsContainer">
                 <span class="topic-chip">Loading topics...</span>
@@ -102,7 +103,7 @@
         <section class="section reveal" id="journey" aria-labelledby="journey-title">
             <div class="section-head">
                 <p class="eyebrow">Timeline</p>
-                <h2 id="journey-title">Learning journey</h2>
+                <h2 id="journey-title"><img src="assets/img/icons8-journey-50.png" alt="" class="section-icon">Learning journey</h2>
             </div>
             <ol class="timeline">
                 <li>
@@ -131,11 +132,11 @@
         <section class="section reveal" id="contact" aria-labelledby="contact-title">
             <div class="section-head">
                 <p class="eyebrow">Contact</p>
-                <h2 id="contact-title">Let us build something useful</h2>
+                <h2 id="contact-title"><img src="assets/img/icons8-contact-50.png" alt="" class="section-icon">Let us build something meaningful with data</h2>
             </div>
             <div class="contact-card">
                 <p>
-                    Open to collaboration, internships, and project discussions.
+                    Open to collaboration, internships, and project discussions in data science, machine learning, and analytical tooling.
                     Based in United Arab Emirates.
                 </p>
                 <div class="contact-actions">
@@ -149,7 +150,7 @@
 
     <footer class="site-footer">
         <p>© 2026 Syed Nihaal. Built for GitHub Pages.</p>
-        <a href="#top">Back to top</a>
+        <a href="#top" class="back-to-top-link"><img src="assets/img/icons8-up-squared-50.png" alt="" class="nav-icon">Back to top</a>
     </footer>
 
     <script>
@@ -161,6 +162,7 @@
             const featuredGrid = document.getElementById("featuredGrid");
             const topicsContainer = document.getElementById("topicsContainer");
             const statRepos = document.getElementById("statRepos");
+            const statContrib = document.getElementById("statContrib");
             const statSocial = document.getElementById("statSocial");
 
             if (!track || !backButton || !nextButton || !featuredGrid || !topicsContainer) {
@@ -173,6 +175,50 @@
 
             const CACHE_KEY = "sn-portfolio-gh-cache-v1";
             const CACHE_TTL_MS = 30 * 60 * 1000;
+            const EXCLUDED_REPOS = new Set(["Syed-Nihaal.github.io", "Syed-Nihaal"]);
+
+            const isVisibleRepo = (repo) => repo && repo.name && !EXCLUDED_REPOS.has(repo.name);
+
+            const fetchWithRetry = async (url, options = {}, maxRetries = 3) => {
+                let lastError;
+                for (let attempt = 0; attempt < maxRetries; attempt++) {
+                    try {
+                        const response = await fetch(url, options);
+                        if (response.ok) {
+                            return response;
+                        }
+                        if (response.status === 404) {
+                            throw new Error(`Not found: ${url}`);
+                        }
+                        if (response.status === 403) {
+                            throw new Error("GitHub API rate limited");
+                        }
+                        lastError = new Error(`HTTP ${response.status}`);
+                    } catch (error) {
+                        lastError = error;
+                        if (attempt < maxRetries - 1) {
+                            const delay = Math.pow(2, attempt) * 1000;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                        }
+                    }
+                }
+                throw lastError;
+            };
+
+            const scrollToTop = (event) => {
+                if (event) {
+                    event.preventDefault();
+                }
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            };
+
+            document.querySelectorAll('a[href="#top"]').forEach((link) => {
+                link.addEventListener("click", scrollToTop);
+            });
 
             const readCache = () => {
                 try {
@@ -286,6 +332,29 @@
                 return counts;
             };
 
+            const aggregateThisYearContributions = (events) => {
+                const year = new Date().getFullYear();
+                const contributionTypes = new Set([
+                    "PullRequestEvent",
+                    "IssuesEvent",
+                    "IssueCommentEvent",
+                    "PullRequestReviewCommentEvent",
+                    "CommitCommentEvent",
+                    "CreateEvent"
+                ]);
+
+                return events
+                    .filter((event) => event && event.created_at)
+                    .filter((event) => new Date(event.created_at).getFullYear() === year)
+                    .reduce((total, event) => {
+                        if (event.type === "PushEvent") {
+                            return total + (Number(event.payload && event.payload.size) || 1);
+                        }
+
+                        return total + (contributionTypes.has(event.type) ? 1 : 0);
+                    }, 0);
+            };
+
             const updateButtons = () => {
                 const maxLeft = track.scrollWidth - track.clientWidth;
                 backButton.disabled = track.scrollLeft <= 2;
@@ -326,9 +395,9 @@
                     events = cached.events;
                 } else {
                     const [userResponse, reposResponse, eventsResponse] = await Promise.all([
-                        fetch(`https://api.github.com/users/${username}`, { headers: GH_HEADERS }),
-                        fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, { headers: GH_HEADERS }),
-                        fetch(`https://api.github.com/users/${username}/events/public?per_page=100`, { headers: GH_HEADERS })
+                        fetchWithRetry(`https://api.github.com/users/${username}`, { headers: GH_HEADERS }),
+                        fetchWithRetry(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, { headers: GH_HEADERS }),
+                        fetchWithRetry(`https://api.github.com/users/${username}/events/public?per_page=100`, { headers: GH_HEADERS })
                     ]);
 
                     if (!userResponse.ok || !reposResponse.ok || !eventsResponse.ok) {
@@ -341,16 +410,22 @@
                     writeCache({ user, repos, events });
                 }
 
+                const visibleRepos = Array.isArray(repos) ? repos.filter(isVisibleRepo) : [];
+
                 if (statRepos) {
-                    statRepos.textContent = String(user.public_repos ?? repos.length);
+                    statRepos.textContent = String(visibleRepos.length);
                 }
 
                 if (statSocial) {
                     statSocial.textContent = `${user.followers ?? 0} / ${user.following ?? 0}`;
                 }
 
+                if (statContrib) {
+                    statContrib.textContent = String(aggregateThisYearContributions(Array.isArray(events) ? events : []));
+                }
+
                 const activityByRepo = aggregateRecentActivity(Array.isArray(events) ? events : []);
-                const withContributions = repos.map((repo) => ({
+                const withContributions = visibleRepos.map((repo) => ({
                     ...repo,
                     activityCount: activityByRepo[repo.name] || 0
                 }));
@@ -395,15 +470,19 @@
             } catch {
                 const cached = readCache();
                 if (cached && Array.isArray(cached.repos) && cached.repos.length) {
+                    if (statContrib) {
+                        statContrib.textContent = String(aggregateThisYearContributions(Array.isArray(cached.events) ? cached.events : []));
+                    }
+
                     featuredGrid.innerHTML = "";
-                    const backup = cached.repos.slice(0, 3).map((repo) => ({ ...repo, activityCount: 0 }));
+                    const backup = cached.repos.filter(isVisibleRepo).slice(0, 3).map((repo) => ({ ...repo, activityCount: 0 }));
                     backup.forEach((repo) => featuredGrid.appendChild(renderFeaturedCard(repo)));
 
                     track.innerHTML = "";
-                    cached.repos.forEach((repo) => track.appendChild(renderRepoCard(repo)));
+                    cached.repos.filter(isVisibleRepo).forEach((repo) => track.appendChild(renderRepoCard(repo)));
 
                     const fallbackTopics = Array.from(new Set(
-                        cached.repos.flatMap((repo) => Array.isArray(repo.topics) ? repo.topics : [])
+                        cached.repos.filter(isVisibleRepo).flatMap((repo) => Array.isArray(repo.topics) ? repo.topics : [])
                     )).sort((a, b) => a.localeCompare(b));
 
                     topicsContainer.innerHTML = "";
@@ -418,6 +497,10 @@
                         });
                     }
                 } else {
+                    if (statContrib) {
+                        statContrib.textContent = "--";
+                    }
+
                     featuredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load featured repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     track.innerHTML = "<article class=\"repo-item\"><h3>Could not load repositories</h3><p class=\"repo-about\">GitHub API limit reached. Please refresh later.</p><p class=\"repo-topics\">Topics: Unavailable</p></article>";
                     topicsContainer.innerHTML = "<span class=\"topic-chip\">Topics unavailable</span>";
