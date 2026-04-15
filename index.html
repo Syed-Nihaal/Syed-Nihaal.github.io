@@ -55,6 +55,19 @@
             </ul>
         </section>
 
+        <section class="section reveal" id="pinned" aria-labelledby="pinned-title">
+            <div class="section-head">
+                <p class="eyebrow">Pinned Repositories</p>
+                <h2 id="pinned-title"><img src="assets/img/icons8-star-50.png" alt="" class="section-icon">My best works on GitHub</h2>
+            </div>
+            <div class="project-grid" id="pinnedGrid">
+                <article class="project-card">
+                    <h3>Loading pinned repositories...</h3>
+                    <p>Fetching pinned repository details from GitHub.</p>
+                </article>
+            </div>
+        </section>
+
         <section class="section reveal" id="projects" aria-labelledby="projects-title">
             <div class="section-head">
                 <p class="eyebrow">Most Contributed Repos</p>
@@ -160,12 +173,13 @@
             const backButton = document.getElementById("repoBack");
             const nextButton = document.getElementById("repoNext");
             const featuredGrid = document.getElementById("featuredGrid");
+            const pinnedGrid = document.getElementById("pinnedGrid");
             const topicsContainer = document.getElementById("topicsContainer");
             const statRepos = document.getElementById("statRepos");
             const statContrib = document.getElementById("statContrib");
             const statSocial = document.getElementById("statSocial");
 
-            if (!track || !backButton || !nextButton || !featuredGrid || !topicsContainer) {
+            if (!track || !backButton || !nextButton || !featuredGrid || !pinnedGrid || !topicsContainer) {
                 return;
             }
 
@@ -176,6 +190,12 @@
             const CACHE_KEY = "sn-portfolio-gh-cache-v1";
             const CACHE_TTL_MS = 30 * 60 * 1000;
             const EXCLUDED_REPOS = new Set(["Syed-Nihaal.github.io", "Syed-Nihaal"]);
+            // Fallback list used only when GitHub pinned data cannot be fetched.
+            const PINNED_REPOS = [
+                "F1-2026-Qualifying-Prediction-and-Race-Strategy",
+                "F1-2020-British-GP-Mercedes-Qualifying-Lap-Time-Prediction",
+                "Car-Price-Prediction-and-Performance-Analysis"
+            ];
 
             const isVisibleRepo = (repo) => repo && repo.name && !EXCLUDED_REPOS.has(repo.name);
 
@@ -251,6 +271,63 @@
                 } catch {
                     // Ignore storage failures and continue with in-memory data.
                 }
+            };
+
+            const extractRepoNameFromUrl = (url) => {
+                if (!url || typeof url !== "string") {
+                    return "";
+                }
+
+                const clean = url.trim().replace(/\/$/, "");
+                const segments = clean.split("/").filter(Boolean);
+                return segments[segments.length - 1] || "";
+            };
+
+            const extractPinnedRepoNames = (payload) => {
+                if (!Array.isArray(payload)) {
+                    return [];
+                }
+
+                return payload
+                    .map((item) => {
+                        if (typeof item === "string") {
+                            return item;
+                        }
+
+                        if (item && typeof item === "object") {
+                            if (typeof item.repo === "string") {
+                                return item.repo;
+                            }
+
+                            if (typeof item.name === "string") {
+                                return item.name;
+                            }
+
+                            if (typeof item.link === "string") {
+                                return extractRepoNameFromUrl(item.link);
+                            }
+
+                            if (typeof item.html_url === "string") {
+                                return extractRepoNameFromUrl(item.html_url);
+                            }
+                        }
+
+                        return "";
+                    })
+                    .map((value) => value.includes("/") ? value.split("/").pop() : value)
+                    .map((value) => (value || "").trim())
+                    .filter(Boolean);
+            };
+
+            const fetchPinnedRepoNames = async (userName) => {
+                const response = await fetchWithRetry(
+                    `https://gh-pinned-repos.egoist.dev/?username=${encodeURIComponent(userName)}`,
+                    {},
+                    2
+                );
+
+                const payload = await response.json();
+                return extractPinnedRepoNames(payload);
             };
 
             const renderRepoCard = (repo) => {
@@ -388,6 +465,13 @@
                 let user;
                 let repos;
                 let events;
+                let pinnedNames = [];
+
+                try {
+                    pinnedNames = await fetchPinnedRepoNames(username);
+                } catch {
+                    pinnedNames = [];
+                }
 
                 if (cached) {
                     user = cached.user;
@@ -407,7 +491,7 @@
                     user = await userResponse.json();
                     repos = await reposResponse.json();
                     events = await eventsResponse.json();
-                    writeCache({ user, repos, events });
+                    writeCache({ user, repos, events, pinnedNames });
                 }
 
                 const visibleRepos = Array.isArray(repos) ? repos.filter(isVisibleRepo) : [];
@@ -439,10 +523,31 @@
                     })
                     .slice(0, 3);
 
+                const resolvedPinnedNames = pinnedNames.length ? pinnedNames : PINNED_REPOS;
+                const pinnedSet = new Set(resolvedPinnedNames);
+                const pinned = resolvedPinnedNames
+                    .map((name) => withContributions.find((repo) => repo.name === name))
+                    .filter(Boolean)
+                    .slice(0, 3);
+
+                // If none of the configured pinned repos are available, fall back to recent activity.
+                const pinnedToRender = pinned.length ? pinned : featured;
+
+                pinnedGrid.innerHTML = "";
+                pinnedToRender.forEach((repo) => {
+                    pinnedGrid.appendChild(renderFeaturedCard(repo));
+                });
+
                 featuredGrid.innerHTML = "";
-                featured.forEach((repo) => {
+                featured.filter((repo) => !pinnedSet.has(repo.name)).slice(0, 3).forEach((repo) => {
                     featuredGrid.appendChild(renderFeaturedCard(repo));
                 });
+
+                if (!featuredGrid.childElementCount) {
+                    featured.forEach((repo) => {
+                        featuredGrid.appendChild(renderFeaturedCard(repo));
+                    });
+                }
 
                 track.innerHTML = "";
                 withContributions.forEach((repo) => {
@@ -478,6 +583,17 @@
                     const backup = cached.repos.filter(isVisibleRepo).slice(0, 3).map((repo) => ({ ...repo, activityCount: 0 }));
                     backup.forEach((repo) => featuredGrid.appendChild(renderFeaturedCard(repo)));
 
+                    pinnedGrid.innerHTML = "";
+                    const pinnedBackup = PINNED_REPOS
+                        .map((name) => cached.repos.find((repo) => repo.name === name))
+                        .filter((repo) => repo && isVisibleRepo(repo))
+                        .slice(0, 3)
+                        .map((repo) => ({ ...repo, activityCount: 0 }));
+
+                    (pinnedBackup.length ? pinnedBackup : backup).forEach((repo) => {
+                        pinnedGrid.appendChild(renderFeaturedCard(repo));
+                    });
+
                     track.innerHTML = "";
                     cached.repos.filter(isVisibleRepo).forEach((repo) => track.appendChild(renderRepoCard(repo)));
 
@@ -501,6 +617,7 @@
                         statContrib.textContent = "--";
                     }
 
+                    pinnedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load pinned repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     featuredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load featured repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     track.innerHTML = "<article class=\"repo-item\"><h3>Could not load repositories</h3><p class=\"repo-about\">GitHub API limit reached. Please refresh later.</p><p class=\"repo-topics\">Topics: Unavailable</p></article>";
                     topicsContainer.innerHTML = "<span class=\"topic-chip\">Topics unavailable</span>";
