@@ -429,6 +429,16 @@ main {
     color: rgba(125, 238, 231, 0.92);
 }
 
+.repo-topic-chips {
+    margin-top: auto;
+}
+
+.repo-topic-chips li {
+    border-color: rgba(0, 200, 200, 0.38);
+    color: rgba(125, 238, 231, 0.95);
+    background: rgba(13, 29, 38, 0.9);
+}
+
 .repo-pill {
     text-decoration: none;
     display: inline-flex;
@@ -485,6 +495,21 @@ main {
 
 .project-card p {
     color: var(--muted);
+}
+
+.repo-owner {
+    color: rgba(125, 238, 231, 0.92);
+    font-size: 0.86rem;
+}
+
+.project-card h3 a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+}
+
+.project-card h3 a:hover,
+.project-card h3 a:focus-visible {
+    color: var(--accent-2);
 }
 
 .project-card a {

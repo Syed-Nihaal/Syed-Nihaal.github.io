@@ -20,8 +20,10 @@
             <span class="brand-text">Syed Nihaal Ahmed</span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
+            <a href="#starred"><img src="assets/img/icons8-star-50.png" alt="" class="nav-icon">Starred</a>
             <a href="#projects"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="nav-icon">Projects</a>
             <a href="#repositories"><img src="assets/img/icons8-repository-50.png" alt="" class="nav-icon">Repos</a>
+            <a href="#interested"><img src="assets/img/icons8-idea-50.png" alt="" class="nav-icon">Interested</a>
             <a href="#skills"><img src="assets/img/icons8-skills-50.png" alt="" class="nav-icon">Skills</a>
             <a href="#journey"><img src="assets/img/icons8-journey-50.png" alt="" class="nav-icon">Journey</a>
             <a href="#contact"><img src="assets/img/icons8-contact-50.png" alt="" class="nav-icon">Contact</a>
@@ -55,29 +57,45 @@
             </ul>
         </section>
 
-        <section class="section reveal" id="pinned" aria-labelledby="pinned-title">
-            <div class="section-head">
-                <p class="eyebrow">Pinned Repositories</p>
-                <h2 id="pinned-title"><img src="assets/img/icons8-star-50.png" alt="" class="section-icon">My best works on GitHub</h2>
+        <section class="section reveal" id="starred" aria-labelledby="starred-title">
+            <div class="section-head repo-head">
+                <div>
+                    <p class="eyebrow">Starred Repos</p>
+                    <h2 id="starred-title"><img src="assets/img/icons8-star-50.png" alt="" class="section-icon">Featured repos</h2>
+                </div>
+                <div class="repo-controls" aria-label="Starred repositories carousel controls">
+                    <button class="repo-nav" id="starredBack" type="button" aria-controls="starredGrid">Back</button>
+                    <button class="repo-nav" id="starredNext" type="button" aria-controls="starredGrid">Next</button>
+                </div>
             </div>
-            <div class="project-grid" id="pinnedGrid">
-                <article class="project-card">
-                    <h3>Loading pinned repositories...</h3>
-                    <p>Fetching pinned repository details from GitHub.</p>
-                </article>
+            <div class="repo-slider" aria-label="Starred repositories slider">
+                <div class="repo-track" id="starredGrid" tabindex="0">
+                    <article class="project-card">
+                        <h3>Loading starred repositories...</h3>
+                        <p>Fetching starred repository details from GitHub.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
         <section class="section reveal" id="projects" aria-labelledby="projects-title">
-            <div class="section-head">
-                <p class="eyebrow">Most Contributed Repos</p>
-                <h2 id="projects-title"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="section-icon">Where I have contributed the most</h2>
+            <div class="section-head repo-head">
+                <div>
+                    <p class="eyebrow">Most Contributed Repos</p>
+                    <h2 id="projects-title"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="section-icon">Where I have contributed the most</h2>
+                </div>
+                <div class="repo-controls" aria-label="Most contributed repositories carousel controls">
+                    <button class="repo-nav" id="featuredBack" type="button" aria-controls="featuredGrid">Back</button>
+                    <button class="repo-nav" id="featuredNext" type="button" aria-controls="featuredGrid">Next</button>
+                </div>
             </div>
-            <div class="project-grid" id="featuredGrid">
-                <article class="project-card">
-                    <h3>Loading repositories...</h3>
-                    <p>Fetching contribution data from GitHub API.</p>
-                </article>
+            <div class="repo-slider" aria-label="Most contributed repositories slider">
+                <div class="repo-track" id="featuredGrid" tabindex="0">
+                    <article class="project-card">
+                        <h3>Loading repositories...</h3>
+                        <p>Fetching contribution data from GitHub API.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -98,6 +116,27 @@
                         <h3>Loading repositories...</h3>
                         <p class="repo-about">Fetching about and topics from GitHub API.</p>
                         <p class="repo-topics">Topics: ...</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal" id="interested" aria-labelledby="interested-title">
+            <div class="section-head repo-head">
+                <div>
+                    <p class="eyebrow">Interested Repos</p>
+                    <h2 id="interested-title"><img src="assets/img/icons8-idea-50.png" alt="" class="section-icon">Repositories I am exploring</h2>
+                </div>
+                <div class="repo-controls" aria-label="Interested repositories carousel controls">
+                    <button class="repo-nav" id="interestedBack" type="button" aria-controls="interestedGrid">Back</button>
+                    <button class="repo-nav" id="interestedNext" type="button" aria-controls="interestedGrid">Next</button>
+                </div>
+            </div>
+            <div class="repo-slider" aria-label="Interested repositories slider">
+                <div class="repo-track" id="interestedGrid" tabindex="0">
+                    <article class="project-card">
+                        <h3>Loading interested repositories...</h3>
+                        <p>Fetching repository details from GitHub stars list.</p>
                     </article>
                 </div>
             </div>
@@ -172,14 +211,23 @@
             const track = document.getElementById("repoTrack");
             const backButton = document.getElementById("repoBack");
             const nextButton = document.getElementById("repoNext");
+
+            const starredBackButton = document.getElementById("starredBack");
+            const starredNextButton = document.getElementById("starredNext");
+            const featuredBackButton = document.getElementById("featuredBack");
+            const featuredNextButton = document.getElementById("featuredNext");
+            const interestedBackButton = document.getElementById("interestedBack");
+            const interestedNextButton = document.getElementById("interestedNext");
+
             const featuredGrid = document.getElementById("featuredGrid");
-            const pinnedGrid = document.getElementById("pinnedGrid");
+            const starredGrid = document.getElementById("starredGrid");
+            const interestedGrid = document.getElementById("interestedGrid");
             const topicsContainer = document.getElementById("topicsContainer");
             const statRepos = document.getElementById("statRepos");
             const statContrib = document.getElementById("statContrib");
             const statSocial = document.getElementById("statSocial");
 
-            if (!track || !backButton || !nextButton || !featuredGrid || !pinnedGrid || !topicsContainer) {
+            if (!track || !backButton || !nextButton || !starredBackButton || !starredNextButton || !featuredBackButton || !featuredNextButton || !interestedBackButton || !interestedNextButton || !featuredGrid || !starredGrid || !interestedGrid || !topicsContainer) {
                 return;
             }
 
@@ -190,11 +238,18 @@
             const CACHE_KEY = "sn-portfolio-gh-cache-v1";
             const CACHE_TTL_MS = 30 * 60 * 1000;
             const EXCLUDED_REPOS = new Set(["Syed-Nihaal.github.io", "Syed-Nihaal"]);
-            // Fallback list used only when GitHub pinned data cannot be fetched.
-            const PINNED_REPOS = [
+            const STARS_FEATURED_LIST_URL = "https://github.com/stars/Syed-Nihaal/lists/featured-repos";
+            const STARS_INTERESTED_LIST_URL = "https://github.com/stars/Syed-Nihaal/lists/interested-repos";
+            // Fallback list used when the GitHub API cannot return starred repos.
+            const starred_REPOS = [
                 "F1-2026-Qualifying-Prediction-and-Race-Strategy",
                 "F1-2020-British-GP-Mercedes-Qualifying-Lap-Time-Prediction",
                 "Car-Price-Prediction-and-Performance-Analysis"
+            ];
+            const INTERESTED_REPOS = [
+                "theOehrly/Fast-F1",
+                "toUpperCase78/formula1-datasets",
+                "NAME0x0/AVA"
             ];
 
             const isVisibleRepo = (repo) => repo && repo.name && !EXCLUDED_REPOS.has(repo.name);
@@ -273,61 +328,62 @@
                 }
             };
 
-            const extractRepoNameFromUrl = (url) => {
-                if (!url || typeof url !== "string") {
-                    return "";
-                }
-
-                const clean = url.trim().replace(/\/$/, "");
-                const segments = clean.split("/").filter(Boolean);
-                return segments[segments.length - 1] || "";
-            };
-
-            const extractPinnedRepoNames = (payload) => {
-                if (!Array.isArray(payload)) {
+            const extractstarredRepoNamesFromStarsList = (content) => {
+                if (!content || typeof content !== "string") {
                     return [];
                 }
 
-                return payload
-                    .map((item) => {
-                        if (typeof item === "string") {
-                            return item;
-                        }
+                const headingRepoRegex = /##\s+\[[^\]]+\]\(https?:\/\/github\.com\/([^\/\s)]+)\/([^\/\s)]+)\)/g;
+                const names = [];
+                let match;
 
-                        if (item && typeof item === "object") {
-                            if (typeof item.repo === "string") {
-                                return item.repo;
-                            }
+                while ((match = headingRepoRegex.exec(content)) !== null) {
+                    const repoName = (match[2] || "").trim();
+                    if (repoName) {
+                        names.push(repoName);
+                    }
+                }
 
-                            if (typeof item.name === "string") {
-                                return item.name;
-                            }
-
-                            if (typeof item.link === "string") {
-                                return extractRepoNameFromUrl(item.link);
-                            }
-
-                            if (typeof item.html_url === "string") {
-                                return extractRepoNameFromUrl(item.html_url);
-                            }
-                        }
-
-                        return "";
-                    })
-                    .map((value) => value.includes("/") ? value.split("/").pop() : value)
-                    .map((value) => (value || "").trim())
-                    .filter(Boolean);
+                return Array.from(new Set(names));
             };
 
-            const fetchPinnedRepoNames = async (userName) => {
-                const response = await fetchWithRetry(
-                    `https://gh-pinned-repos.egoist.dev/?username=${encodeURIComponent(userName)}`,
-                    {},
-                    2
-                );
+            const extractRepoFullNamesFromStarsList = (content) => {
+                if (!content || typeof content !== "string") {
+                    return [];
+                }
 
-                const payload = await response.json();
-                return extractPinnedRepoNames(payload);
+                const headingRepoRegex = /##\s+\[[^\]]+\]\(https?:\/\/github\.com\/([^\/\s)]+)\/([^\/\s)]+)\)/g;
+                const fullNames = [];
+                let match;
+
+                while ((match = headingRepoRegex.exec(content)) !== null) {
+                    const owner = (match[1] || "").trim();
+                    const repoName = (match[2] || "").trim();
+                    if (owner && repoName) {
+                        fullNames.push(`${owner}/${repoName}`);
+                    }
+                }
+
+                return Array.from(new Set(fullNames));
+            };
+
+            const fetchstarredRepoNames = async () => {
+                const mirrored = `https://r.jina.ai/http://${STARS_FEATURED_LIST_URL.replace(/^https?:\/\//, "")}`;
+                const response = await fetchWithRetry(mirrored, {}, 2);
+                const text = await response.text();
+                return extractstarredRepoNamesFromStarsList(text);
+            };
+
+            const fetchInterestedRepoFullNames = async () => {
+                const mirrored = `https://r.jina.ai/http://${STARS_INTERESTED_LIST_URL.replace(/^https?:\/\//, "")}`;
+                const response = await fetchWithRetry(mirrored, {}, 2);
+                const text = await response.text();
+                return extractRepoFullNamesFromStarsList(text);
+            };
+
+            const fetchRepoByFullName = async (fullName) => {
+                const response = await fetchWithRetry(`https://api.github.com/repos/${fullName}`, { headers: GH_HEADERS }, 2);
+                return response.json();
             };
 
             const renderRepoCard = (repo) => {
@@ -346,9 +402,13 @@
                 about.className = "repo-about";
                 about.textContent = repo.description || "No public description added yet.";
 
-                const topics = document.createElement("p");
-                topics.className = "repo-topics";
-                topics.textContent = `Topics: ${repo.topics && repo.topics.length ? repo.topics.join(", ") : "None"}`;
+                const topics = document.createElement("ul");
+                topics.className = "chip-list repo-topic-chips";
+                (repo.topics && repo.topics.length ? repo.topics : ["No Topics"]).forEach((topic) => {
+                    const chip = document.createElement("li");
+                    chip.textContent = topic;
+                    topics.appendChild(chip);
+                });
 
                 article.appendChild(h3);
                 article.appendChild(about);
@@ -356,15 +416,29 @@
                 return article;
             };
 
-            const renderFeaturedCard = (repo) => {
+            const renderFeaturedCard = (repo, options = {}) => {
+                const { showOwner = false } = options;
                 const article = document.createElement("article");
                 article.className = "project-card";
 
                 const title = document.createElement("h3");
-                title.textContent = repo.name;
+                const titleLink = document.createElement("a");
+                titleLink.href = repo.html_url;
+                titleLink.target = "_blank";
+                titleLink.rel = "noopener noreferrer";
+                titleLink.textContent = repo.name;
+                title.appendChild(titleLink);
 
                 const description = document.createElement("p");
                 description.textContent = repo.description || "No public description added yet.";
+
+                const ownerLogin =
+                    (repo.owner && repo.owner.login) ||
+                    (typeof repo.full_name === "string" && repo.full_name.includes("/") ? repo.full_name.split("/")[0] : "Unknown");
+
+                const owner = document.createElement("p");
+                owner.className = "repo-owner";
+                owner.textContent = `Owner: @${ownerLogin}`;
 
                 const chips = document.createElement("ul");
                 chips.className = "chip-list";
@@ -382,16 +456,12 @@
                 chips.appendChild(activityChip);
                 chips.appendChild(topicChip);
 
-                const link = document.createElement("a");
-                link.href = repo.html_url;
-                link.target = "_blank";
-                link.rel = "noopener noreferrer";
-                link.textContent = "Repository";
-
                 article.appendChild(title);
+                if (showOwner) {
+                    article.appendChild(owner);
+                }
                 article.appendChild(description);
                 article.appendChild(chips);
-                article.appendChild(link);
                 return article;
             };
 
@@ -432,45 +502,61 @@
                     }, 0);
             };
 
-            const updateButtons = () => {
-                const maxLeft = track.scrollWidth - track.clientWidth;
-                backButton.disabled = track.scrollLeft <= 2;
-                nextButton.disabled = track.scrollLeft >= maxLeft - 2;
+            const setupTrackNavigation = (trackElement, backControl, nextControl, cardSelector) => {
+                const updateButtons = () => {
+                    const maxLeft = trackElement.scrollWidth - trackElement.clientWidth;
+                    backControl.disabled = trackElement.scrollLeft <= 2;
+                    nextControl.disabled = trackElement.scrollLeft >= maxLeft - 2;
+                };
+
+                const step = () => {
+                    const firstCard = trackElement.querySelector(cardSelector);
+                    if (!firstCard) {
+                        return trackElement.clientWidth;
+                    }
+
+                    const styles = window.getComputedStyle(trackElement);
+                    const gap = parseFloat(styles.columnGap || styles.gap || "0");
+                    return (firstCard.getBoundingClientRect().width + gap) * 3;
+                };
+
+                backControl.addEventListener("click", () => {
+                    trackElement.scrollBy({ left: -step(), behavior: "smooth" });
+                });
+
+                nextControl.addEventListener("click", () => {
+                    trackElement.scrollBy({ left: step(), behavior: "smooth" });
+                });
+
+                trackElement.addEventListener("scroll", updateButtons, { passive: true });
+                window.addEventListener("resize", updateButtons);
+
+                return { updateButtons };
             };
 
-            const step = () => {
-                const firstCard = track.querySelector(".repo-item");
-                if (!firstCard) {
-                    return track.clientWidth;
-                }
-
-                const styles = window.getComputedStyle(track);
-                const gap = parseFloat(styles.columnGap || styles.gap || "0");
-                return (firstCard.getBoundingClientRect().width + gap) * 3;
-            };
-
-            backButton.addEventListener("click", () => {
-                track.scrollBy({ left: -step(), behavior: "smooth" });
-            });
-
-            nextButton.addEventListener("click", () => {
-                track.scrollBy({ left: step(), behavior: "smooth" });
-            });
-
-            track.addEventListener("scroll", updateButtons, { passive: true });
-            window.addEventListener("resize", updateButtons);
+            const repoNavigation = setupTrackNavigation(track, backButton, nextButton, ".repo-item");
+            const starredNavigation = setupTrackNavigation(starredGrid, starredBackButton, starredNextButton, ".project-card");
+            const featuredNavigation = setupTrackNavigation(featuredGrid, featuredBackButton, featuredNextButton, ".project-card");
+            const interestedNavigation = setupTrackNavigation(interestedGrid, interestedBackButton, interestedNextButton, ".project-card");
 
             try {
                 const cached = readCache();
                 let user;
                 let repos;
                 let events;
-                let pinnedNames = [];
+                let starredNames = [];
+                let interestedFullNames = [];
 
                 try {
-                    pinnedNames = await fetchPinnedRepoNames(username);
+                    starredNames = await fetchstarredRepoNames();
                 } catch {
-                    pinnedNames = [];
+                    starredNames = [];
+                }
+
+                try {
+                    interestedFullNames = await fetchInterestedRepoFullNames();
+                } catch {
+                    interestedFullNames = [];
                 }
 
                 if (cached) {
@@ -491,7 +577,7 @@
                     user = await userResponse.json();
                     repos = await reposResponse.json();
                     events = await eventsResponse.json();
-                    writeCache({ user, repos, events, pinnedNames });
+                    writeCache({ user, repos, events });
                 }
 
                 const visibleRepos = Array.isArray(repos) ? repos.filter(isVisibleRepo) : [];
@@ -523,23 +609,22 @@
                     })
                     .slice(0, 3);
 
-                const resolvedPinnedNames = pinnedNames.length ? pinnedNames : PINNED_REPOS;
-                const pinnedSet = new Set(resolvedPinnedNames);
-                const pinned = resolvedPinnedNames
+                const resolvedstarredNames = starredNames.length ? starredNames : starred_REPOS;
+                const starred = resolvedstarredNames
                     .map((name) => withContributions.find((repo) => repo.name === name))
                     .filter(Boolean)
                     .slice(0, 3);
 
-                // If none of the configured pinned repos are available, fall back to recent activity.
-                const pinnedToRender = pinned.length ? pinned : featured;
+                // If none of the configured starred repos are available, fall back to recent activity.
+                const starredToRender = starred.length ? starred : featured;
 
-                pinnedGrid.innerHTML = "";
-                pinnedToRender.forEach((repo) => {
-                    pinnedGrid.appendChild(renderFeaturedCard(repo));
+                starredGrid.innerHTML = "";
+                starredToRender.forEach((repo) => {
+                    starredGrid.appendChild(renderFeaturedCard(repo));
                 });
 
                 featuredGrid.innerHTML = "";
-                featured.filter((repo) => !pinnedSet.has(repo.name)).slice(0, 3).forEach((repo) => {
+                featured.slice(0, 3).forEach((repo) => {
                     featuredGrid.appendChild(renderFeaturedCard(repo));
                 });
 
@@ -547,6 +632,37 @@
                     featured.forEach((repo) => {
                         featuredGrid.appendChild(renderFeaturedCard(repo));
                     });
+                }
+
+                const interestedTargets = interestedFullNames.length ? interestedFullNames : INTERESTED_REPOS;
+                const ownReposByFullName = new Map(
+                    withContributions.map((repo) => [`${(repo.owner && repo.owner.login) || username}/${repo.name}`.toLowerCase(), repo])
+                );
+
+                const interestedResolved = await Promise.all(interestedTargets.map(async (fullName) => {
+                    const key = String(fullName || "").toLowerCase();
+                    if (ownReposByFullName.has(key)) {
+                        return ownReposByFullName.get(key);
+                    }
+
+                    try {
+                        const repo = await fetchRepoByFullName(fullName);
+                        return {
+                            ...repo,
+                            activityCount: 0
+                        };
+                    } catch {
+                        return null;
+                    }
+                }));
+
+                interestedGrid.innerHTML = "";
+                interestedResolved.filter(Boolean).forEach((repo) => {
+                    interestedGrid.appendChild(renderFeaturedCard(repo, { showOwner: true }));
+                });
+
+                if (!interestedGrid.childElementCount) {
+                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load interested repositories</h3><p>Please refresh later or update your interested list link.</p></article>";
                 }
 
                 track.innerHTML = "";
@@ -583,16 +699,18 @@
                     const backup = cached.repos.filter(isVisibleRepo).slice(0, 3).map((repo) => ({ ...repo, activityCount: 0 }));
                     backup.forEach((repo) => featuredGrid.appendChild(renderFeaturedCard(repo)));
 
-                    pinnedGrid.innerHTML = "";
-                    const pinnedBackup = PINNED_REPOS
+                    starredGrid.innerHTML = "";
+                    const starredBackup = starred_REPOS
                         .map((name) => cached.repos.find((repo) => repo.name === name))
                         .filter((repo) => repo && isVisibleRepo(repo))
                         .slice(0, 3)
                         .map((repo) => ({ ...repo, activityCount: 0 }));
 
-                    (pinnedBackup.length ? pinnedBackup : backup).forEach((repo) => {
-                        pinnedGrid.appendChild(renderFeaturedCard(repo));
+                    (starredBackup.length ? starredBackup : backup).forEach((repo) => {
+                        starredGrid.appendChild(renderFeaturedCard(repo));
                     });
+
+                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Interested repositories are unavailable</h3><p>Could not load stars list right now.</p></article>";
 
                     track.innerHTML = "";
                     cached.repos.filter(isVisibleRepo).forEach((repo) => track.appendChild(renderRepoCard(repo)));
@@ -617,14 +735,18 @@
                         statContrib.textContent = "--";
                     }
 
-                    pinnedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load pinned repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
+                    starredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load starred repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     featuredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load featured repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
+                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load interested repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     track.innerHTML = "<article class=\"repo-item\"><h3>Could not load repositories</h3><p class=\"repo-about\">GitHub API limit reached. Please refresh later.</p><p class=\"repo-topics\">Topics: Unavailable</p></article>";
                     topicsContainer.innerHTML = "<span class=\"topic-chip\">Topics unavailable</span>";
                 }
             }
 
-            updateButtons();
+            repoNavigation.updateButtons();
+            starredNavigation.updateButtons();
+            featuredNavigation.updateButtons();
+            interestedNavigation.updateButtons();
         })();
     </script>
 </body>
