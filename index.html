@@ -23,7 +23,7 @@
             <a href="#starred"><img src="assets/img/icons8-star-50.png" alt="" class="nav-icon">Starred</a>
             <a href="#projects"><img src="assets/img/icons8-group-of-projects-50.png" alt="" class="nav-icon">Projects</a>
             <a href="#repositories"><img src="assets/img/icons8-repository-50.png" alt="" class="nav-icon">Repos</a>
-            <a href="#interested"><img src="assets/img/icons8-idea-50.png" alt="" class="nav-icon">Interested</a>
+            
             <a href="#skills"><img src="assets/img/icons8-skills-50.png" alt="" class="nav-icon">Skills</a>
             <a href="#journey"><img src="assets/img/icons8-journey-50.png" alt="" class="nav-icon">Journey</a>
             <a href="#contact"><img src="assets/img/icons8-contact-50.png" alt="" class="nav-icon">Contact</a>
@@ -121,26 +121,7 @@
             </div>
         </section>
 
-        <section class="section reveal" id="interested" aria-labelledby="interested-title">
-            <div class="section-head repo-head">
-                <div>
-                    <p class="eyebrow">Interested Repos</p>
-                    <h2 id="interested-title"><img src="assets/img/icons8-idea-50.png" alt="" class="section-icon">Repositories I am exploring</h2>
-                </div>
-                <div class="repo-controls" aria-label="Interested repositories carousel controls">
-                    <button class="repo-nav" id="interestedBack" type="button" aria-controls="interestedGrid">Back</button>
-                    <button class="repo-nav" id="interestedNext" type="button" aria-controls="interestedGrid">Next</button>
-                </div>
-            </div>
-            <div class="repo-slider" aria-label="Interested repositories slider">
-                <div class="repo-track" id="interestedGrid" tabindex="0">
-                    <article class="project-card">
-                        <h3>Loading interested repositories...</h3>
-                        <p>Fetching repository details from GitHub stars list.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+        
 
         <section class="section reveal" id="skills" aria-labelledby="skills-title">
             <div class="section-head">
@@ -164,7 +145,7 @@
                 </li>
                 <li>
                     <span class="time">2023</span>
-                    <p>Programming Fundamentals with Python</p>
+                    <p>Programming Fundamentals: Python</p>
                 </li>
                 <li>
                     <span class="time">2024</span>
@@ -192,7 +173,7 @@
                     Based in United Arab Emirates.
                 </p>
                 <div class="contact-actions">
-                    <a class="button" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer">Message on GitHub</a>
+                    <a class="button button-secondary" href="https://github.com/Syed-Nihaal" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a class="button button-secondary" href="https://www.linkedin.com/in/syed-nihaal-ahmed-71056b31a" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a class="button button-secondary" href="mailto:syednihaal5@gmail.com">Email</a>
                 </div>
@@ -216,18 +197,15 @@
             const starredNextButton = document.getElementById("starredNext");
             const featuredBackButton = document.getElementById("featuredBack");
             const featuredNextButton = document.getElementById("featuredNext");
-            const interestedBackButton = document.getElementById("interestedBack");
-            const interestedNextButton = document.getElementById("interestedNext");
 
             const featuredGrid = document.getElementById("featuredGrid");
             const starredGrid = document.getElementById("starredGrid");
-            const interestedGrid = document.getElementById("interestedGrid");
             const topicsContainer = document.getElementById("topicsContainer");
             const statRepos = document.getElementById("statRepos");
             const statContrib = document.getElementById("statContrib");
             const statSocial = document.getElementById("statSocial");
 
-            if (!track || !backButton || !nextButton || !starredBackButton || !starredNextButton || !featuredBackButton || !featuredNextButton || !interestedBackButton || !interestedNextButton || !featuredGrid || !starredGrid || !interestedGrid || !topicsContainer) {
+            if (!track || !backButton || !nextButton || !starredBackButton || !starredNextButton || !featuredBackButton || !featuredNextButton || !featuredGrid || !starredGrid || !topicsContainer) {
                 return;
             }
 
@@ -239,18 +217,13 @@
             const CACHE_TTL_MS = 30 * 60 * 1000;
             const EXCLUDED_REPOS = new Set(["Syed-Nihaal.github.io", "Syed-Nihaal"]);
             const STARS_FEATURED_LIST_URL = "https://github.com/stars/Syed-Nihaal/lists/featured-repos";
-            const STARS_INTERESTED_LIST_URL = "https://github.com/stars/Syed-Nihaal/lists/interested-repos";
             // Fallback list used when the GitHub API cannot return starred repos.
             const starred_REPOS = [
                 "F1-2026-Qualifying-Prediction-and-Race-Strategy",
                 "F1-2020-British-GP-Mercedes-Qualifying-Lap-Time-Prediction",
                 "Car-Price-Prediction-and-Performance-Analysis"
             ];
-            const INTERESTED_REPOS = [
-                "theOehrly/Fast-F1",
-                "toUpperCase78/formula1-datasets",
-                "NAME0x0/AVA"
-            ];
+            
 
             const isVisibleRepo = (repo) => repo && repo.name && !EXCLUDED_REPOS.has(repo.name);
 
@@ -374,12 +347,7 @@
                 return extractstarredRepoNamesFromStarsList(text);
             };
 
-            const fetchInterestedRepoFullNames = async () => {
-                const mirrored = `https://r.jina.ai/http://${STARS_INTERESTED_LIST_URL.replace(/^https?:\/\//, "")}`;
-                const response = await fetchWithRetry(mirrored, {}, 2);
-                const text = await response.text();
-                return extractRepoFullNamesFromStarsList(text);
-            };
+            
 
             const fetchRepoByFullName = async (fullName) => {
                 const response = await fetchWithRetry(`https://api.github.com/repos/${fullName}`, { headers: GH_HEADERS }, 2);
@@ -537,7 +505,6 @@
             const repoNavigation = setupTrackNavigation(track, backButton, nextButton, ".repo-item");
             const starredNavigation = setupTrackNavigation(starredGrid, starredBackButton, starredNextButton, ".project-card");
             const featuredNavigation = setupTrackNavigation(featuredGrid, featuredBackButton, featuredNextButton, ".project-card");
-            const interestedNavigation = setupTrackNavigation(interestedGrid, interestedBackButton, interestedNextButton, ".project-card");
 
             try {
                 const cached = readCache();
@@ -545,7 +512,6 @@
                 let repos;
                 let events;
                 let starredNames = [];
-                let interestedFullNames = [];
 
                 try {
                     starredNames = await fetchstarredRepoNames();
@@ -553,11 +519,7 @@
                     starredNames = [];
                 }
 
-                try {
-                    interestedFullNames = await fetchInterestedRepoFullNames();
-                } catch {
-                    interestedFullNames = [];
-                }
+                
 
                 if (cached) {
                     user = cached.user;
@@ -634,37 +596,7 @@
                     });
                 }
 
-                const interestedTargets = interestedFullNames.length ? interestedFullNames : INTERESTED_REPOS;
-                const ownReposByFullName = new Map(
-                    withContributions.map((repo) => [`${(repo.owner && repo.owner.login) || username}/${repo.name}`.toLowerCase(), repo])
-                );
-
-                const interestedResolved = await Promise.all(interestedTargets.map(async (fullName) => {
-                    const key = String(fullName || "").toLowerCase();
-                    if (ownReposByFullName.has(key)) {
-                        return ownReposByFullName.get(key);
-                    }
-
-                    try {
-                        const repo = await fetchRepoByFullName(fullName);
-                        return {
-                            ...repo,
-                            activityCount: 0
-                        };
-                    } catch {
-                        return null;
-                    }
-                }));
-
-                interestedGrid.innerHTML = "";
-                interestedResolved.filter(Boolean).forEach((repo) => {
-                    interestedGrid.appendChild(renderFeaturedCard(repo, { showOwner: true }));
-                });
-
-                if (!interestedGrid.childElementCount) {
-                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load interested repositories</h3><p>Please refresh later or update your interested list link.</p></article>";
-                }
-
+                
                 track.innerHTML = "";
                 withContributions.forEach((repo) => {
                     track.appendChild(renderRepoCard(repo));
@@ -710,7 +642,7 @@
                         starredGrid.appendChild(renderFeaturedCard(repo));
                     });
 
-                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Interested repositories are unavailable</h3><p>Could not load stars list right now.</p></article>";
+                    
 
                     track.innerHTML = "";
                     cached.repos.filter(isVisibleRepo).forEach((repo) => track.appendChild(renderRepoCard(repo)));
@@ -737,7 +669,7 @@
 
                     starredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load starred repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
                     featuredGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load featured repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
-                    interestedGrid.innerHTML = "<article class=\"project-card\"><h3>Could not load interested repositories</h3><p>GitHub API limit reached. Please refresh in a little while.</p></article>";
+                    
                     track.innerHTML = "<article class=\"repo-item\"><h3>Could not load repositories</h3><p class=\"repo-about\">GitHub API limit reached. Please refresh later.</p><p class=\"repo-topics\">Topics: Unavailable</p></article>";
                     topicsContainer.innerHTML = "<span class=\"topic-chip\">Topics unavailable</span>";
                 }
@@ -746,7 +678,6 @@
             repoNavigation.updateButtons();
             starredNavigation.updateButtons();
             featuredNavigation.updateButtons();
-            interestedNavigation.updateButtons();
         })();
     </script>
 </body>
